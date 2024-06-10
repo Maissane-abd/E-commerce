@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector, useDispatch} from "@reduxjs/toolkit"
 import {getProductsList} from "../features/products"
+import { addOneToCart } from '../features/cart'
 
 export default function ProductsList() {
     const products = useSelector(state => state.products)
@@ -23,7 +24,9 @@ export default function ProductsList() {
                         <p className="text-slate-700 text-lg">{el.title}</p>
                         <p className="text-slate-900 font-bold">{el.price}</p>
                     </div>
-                    <button className={`${
+                    <button 
+                    onClick={() => dispatch(addOneToCart(el.id))}
+                    className={`${
                   el.picked ? "bg-green-700" : "bg-slate-600"
                 } w-full text-slate-100 px-2 inline-flex items-center justify-center rounded p-2 mr-2`}>
                         {el.picked ? "Item picked !" : "Add to cart"}
