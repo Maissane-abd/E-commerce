@@ -15,11 +15,14 @@ export const products = createSlice ({
     extreReducers: {
         ["cart/createCartItem"]:(state, action)=>{
             state.items.find(el => el.id === action.payload.id).picked = true
+        },
+        ["cart/deleteFromCart"]: (state, action) => {
+          state.items.find(el => el.id === action.payload).picked = false
         }
     }
 })
 
-export function getProductList(action) {
+export function getProductsList(action) {
     return function(dispatch, getState){
         fetch("/data/inventory.json")
         .then(response => response.json())

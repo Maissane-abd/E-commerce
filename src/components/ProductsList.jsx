@@ -1,7 +1,7 @@
 import React from 'react'
-import {useSelector, useDispatch} from "@reduxjs/toolkit"
-import {getProductsList} from "../features/products"
-import { addOneToCart } from '../features/cart'
+import {useSelector, useDispatch} from "react-redux"
+import {getProductsList} from "../features/products.js"
+import { addOneToCart } from '../features/cart.js'
 
 export default function ProductsList() {
     const products = useSelector(state => state.products)
@@ -18,7 +18,7 @@ export default function ProductsList() {
                 <li key={el.id} className="p-4 bg-slate-200 rounded">
                     <img 
                     className="mb-4"
-                    src={`/images/${el.img}.png`} 
+                    src={`/public/images/${el.img}.png`} 
                     alt={el.title}/>
                     <div className="flex justify-between items-center mb-6">
                         <p className="text-slate-700 text-lg">{el.title}</p>

@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit"
-import products  from "./features/products"
-import cart from "./features/cart"
+import products  from "./features/products.js"
+import cart from "./features/cart.js"
 
 
 export const store = configureStore({
