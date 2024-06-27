@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { updateItemFromSelect, deleteFromCart } from "../features/cart"
 
+// Prop qui permet de fermer la modale lorsqu'elle est appelée
 export default function Cart({ onClose }) {
 
   const cart = useSelector(state => state.cart)
@@ -8,6 +9,7 @@ export default function Cart({ onClose }) {
 
   return (
     <div
+    // Lorsque l'utilisateur clique à l'extérieur de la modale, elle se ferme
       onClick={onClose}
       className="fixed z-10 inset-0 bg-slate-700/75 flex justify-center items-center"
     >
@@ -22,6 +24,7 @@ export default function Cart({ onClose }) {
           X
         </button>
         <ul>
+          {/* Vérifie s'il y a des items dans le panier, si oui il les affiche */}
           {cart.cartItems.length > 0 ? (
             cart.cartItems.map(el => (
               <li key={el.id} className="flex items-center mb-4">
@@ -32,6 +35,7 @@ export default function Cart({ onClose }) {
                 />
                 <p className="mr-auto ml-2 text-lg font-semibold">{el.title}</p>
 
+                {/* Permet à l'utilisateur de sélectionner la quantité d'un item. */}
                 <select
                   name="quantity"
                   onChange={e => dispatch(updateItemFromSelect({value: e.target.value, id: el.id}))}
@@ -58,6 +62,7 @@ export default function Cart({ onClose }) {
         </ul>
         <p className="text-xl">
           Your total :{" "}
+          {/* Calcule le total du panier en multipliant le prix de chaque item par sa quantité, puis en sommant tous les résultats. Formate le total à deux décimales pour l'affichage */}
           <span className="font-semibold">
             {cart.cartItems
               .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)

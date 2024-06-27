@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { getProductsList } from "../features/products"
 import { addOneToCart } from "../features/cart"
+
 export default function ProductsList() {
   const products = useSelector(state => state.products)
   const dispatch = useDispatch()
@@ -8,7 +9,9 @@ export default function ProductsList() {
   if (!products.items) {
     dispatch(getProductsList())
   }
+
   console.log(products)
+  
   return (
     <div className="px-6">
       <h1 className="text-slate-100 text-2xl mb-6">Here are our products</h1>
